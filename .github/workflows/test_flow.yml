@@ -1,0 +1,17 @@
+name: 'Trigger workflow on PR label'
+
+on:
+  workflow_dispatch:
+  pull_request:
+    types: [ labeled ]
+
+jobs: 
+  trigger_workflow:
+    if: ${{ github.event.label.name == 'Trigger Workflow'}}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo Workflow name
+        shell: bash
+        run: |
+          echo "I am Workflow of Child REPO"
+          sleep 120s
